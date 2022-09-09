@@ -1,5 +1,5 @@
 import { DeleteIcon } from "@chakra-ui/icons";
-import { FormLabel, VStack, Flex, Input, Checkbox, IconButton, Button } from "@chakra-ui/react";
+import { Button, Flex, IconButton, VStack } from "@chakra-ui/react";
 import { Alternative } from "../crud-elements/Alternative";
 
 export default function AlternativeList({ fields, register, remove, append }: any) {
@@ -24,7 +24,7 @@ export default function AlternativeList({ fields, register, remove, append }: an
                 <Button
                     type="button"
                     size='sm'
-                    onClick={() => append({ correct: true, text: 'adsf', feedback: 'feedback' })}
+                    onClick={() => append({ correct: false, text: '', feedback: '' })}
                 >
                     Nova alternativa
                 </Button>

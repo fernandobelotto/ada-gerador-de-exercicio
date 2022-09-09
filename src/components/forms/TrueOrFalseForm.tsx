@@ -1,23 +1,15 @@
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import {
-  Button,
-  Checkbox,
-  Editable,
-  EditableInput,
-  EditablePreview,
-  Flex,
+  Button, Flex,
   FormControl,
   FormErrorMessage,
   FormHelperText,
-  FormLabel,
-  Heading, Input,
+  FormLabel, Input,
   NumberDecrementStepper,
   NumberIncrementStepper,
   NumberInput,
   NumberInputField,
-  NumberInputStepper, Radio,
-  RadioGroup, Select, Switch,
-  Textarea,
+  NumberInputStepper, Select, Textarea,
   Tooltip,
   VStack
 } from "@chakra-ui/react";
@@ -25,21 +17,8 @@ import { useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { downloadFile } from "../../service/download";
 import { TrueOrFalseType } from "../../types/true-or-false";
-import { Alternative } from "../crud-elements/Alternative";
 import AlternativeList from "./AlternativeList";
 
-type FormType = {
-  name: string;
-  checkbox: boolean;
-  editable: string;
-  number: number;
-  select: string;
-  switch: boolean;
-  textarea: string;
-  radio: string;
-  pininput: string;
-  slider: string;
-};
 
 export default function TrueOrFalseForm() {
   const {

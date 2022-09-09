@@ -11,7 +11,6 @@ export default function MultipleChoiceForm() {
     const {
         handleSubmit,
         register,
-        control,
         formState: { errors, isSubmitting },
     } = useForm<MultipleChoiceType>();
 
@@ -29,10 +28,8 @@ export default function MultipleChoiceForm() {
 
     return (
         <>
-
             <form onSubmit={handleSubmit(onSubmit)}>
                 <VStack spacing={3}>
-
                     <FormControl
                         isInvalid={!!errors.SKU}
                     >
@@ -49,7 +46,6 @@ export default function MultipleChoiceForm() {
                         )}
                         <FormHelperText>SKU do módulo</FormHelperText>
                     </FormControl>
-
                     <FormControl
                         isInvalid={!!errors.language}
                     >
@@ -88,7 +84,6 @@ export default function MultipleChoiceForm() {
                         )}
                         <FormHelperText>Enunciado da questão</FormHelperText>
                     </FormControl>
-
                     <FormControl>
                         <FormLabel>Alternativas{' '}
                             <Tooltip hasArrow label='O feedback é o que o aluno verá se escolher a respectiva alternativa. Deve conter um feedback claro do porquê essa alternativa é a certa ou a errada' bg='gray.300' color='black'>
@@ -109,9 +104,7 @@ export default function MultipleChoiceForm() {
                                 <Alternative index={4} register={register} />
                             </Flex>
                         </VStack>
-
                     </FormControl>
-
                     <Flex gap={2}>
                         <NumberInput w='80px' defaultValue={0} min={0} allowMouseWheel
                             onChange={(valueString) => setExercisenumber(parseInt(valueString))}
@@ -133,8 +126,6 @@ export default function MultipleChoiceForm() {
 
                 </VStack>
             </form>
-
-
         </>
     )
 }
