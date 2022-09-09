@@ -1,16 +1,17 @@
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import { Button, Flex, FormControl, FormErrorMessage, FormHelperText, FormLabel, Input, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Select, Textarea, Tooltip, VStack } from "@chakra-ui/react";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { downloadFile } from "../../service/download";
 import { MultipleChoiceType } from "../../types/multiple-choice";
 import { Alternative } from "../crud-elements/Alternative";
-
+import { ChakraTagInput } from "../input-tag/InputTag";
 
 export default function MultipleChoiceForm() {
     const {
         handleSubmit,
         register,
+        control,
         formState: { errors, isSubmitting },
     } = useForm<MultipleChoiceType>();
 
@@ -25,6 +26,8 @@ export default function MultipleChoiceForm() {
         }
         downloadFile(generatedForm, values.SKU + "_" + exercisenumber)
     }
+
+
 
     return (
         <>
@@ -69,6 +72,32 @@ export default function MultipleChoiceForm() {
                         )}
                         <FormHelperText>Selecione uma linguagem</FormHelperText>
                     </FormControl>
+
+
+                    <FormControl
+                        isInvalid={!!errors.text}
+                    >
+
+                        <FormLabel>Lista de conceitos</FormLabel>
+
+                        <Controller
+                            control={control}
+                            name={'tagsOrConcepts'}
+                            render={({ field }) => {
+
+                                return (
+                                    <ChakraTagInput
+                                        rounded='md'
+                                        placeholder='digite os tópicos'
+                                        tags={field.value} 
+                                        onTagsChange={(e, tags) => field.onChange(tags)} 
+                                        size="md" />
+                                )
+                            }}
+                        />
+                        <FormHelperText>lista de conceitos trabalhados, deve vir dos conceitos listados no planejamento do módulo</FormHelperText>
+                    </FormControl>
+
                     <FormControl
                         isInvalid={!!errors.text}
                     >
