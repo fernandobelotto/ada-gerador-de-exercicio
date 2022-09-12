@@ -27,13 +27,12 @@ export default function MultipleChoiceForm() {
         downloadFile(generatedForm, values.SKU + "_" + exercisenumber)
     }
 
-
-
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <VStack spacing={3}>
                     <FormControl
+                    colorScheme="green"
                         isInvalid={!!errors.SKU}
                     >
                         <FormLabel htmlFor="SKU">SKU</FormLabel>
@@ -54,6 +53,7 @@ export default function MultipleChoiceForm() {
                     >
                         <FormLabel>Linguagem</FormLabel>
                         <Select
+                            colorScheme="green"
                             placeholder="selecione uma linguagem"
                             {...register("language", {
                                 required: "Esse campo é obrigatório",
@@ -83,18 +83,24 @@ export default function MultipleChoiceForm() {
                         <Controller
                             control={control}
                             name={'tagsOrConcepts'}
+                            rules={{
+                                required: "Esse campo é obrigatório",
+                            }}
                             render={({ field }) => {
 
                                 return (
                                     <ChakraTagInput
                                         rounded='md'
                                         placeholder='digite os tópicos'
-                                        tags={field.value} 
-                                        onTagsChange={(e, tags) => field.onChange(tags)} 
+                                        tags={field.value}
+                                        onTagsChange={(e, tags) => field.onChange(tags)}
                                         size="md" />
                                 )
                             }}
                         />
+                        {errors?.tagsOrConcepts?.message && (
+                            <FormErrorMessage>{errors.tagsOrConcepts.message}</FormErrorMessage>
+                        )}
                         <FormHelperText>lista de conceitos trabalhados, deve vir dos conceitos listados no planejamento do módulo</FormHelperText>
                     </FormControl>
 
@@ -135,7 +141,9 @@ export default function MultipleChoiceForm() {
                         </VStack>
                     </FormControl>
                     <Flex gap={2}>
-                        <NumberInput w='80px' defaultValue={0} min={0} allowMouseWheel
+                        <NumberInput
+                        colorScheme="green"
+                        w='80px' defaultValue={0} min={0} allowMouseWheel
                             onChange={(valueString) => setExercisenumber(parseInt(valueString))}
                             value={exercisenumber}>
                             <NumberInputField />
@@ -145,7 +153,7 @@ export default function MultipleChoiceForm() {
                             </NumberInputStepper>
                         </NumberInput>
                         <Button
-                            colorScheme="teal"
+                            colorScheme="green"
                             isLoading={isSubmitting}
                             type="submit"
                         >

@@ -13,6 +13,7 @@ export function Alternative(props: any) {
                 placeholder="feedback da questão"
                 size='sm' {...register(`alternatives.${index}.feedback`)} />
             <Checkbox
+                colorScheme="green"
                 {...register(`alternatives.${index}.correct`)}
             >
                 correta
